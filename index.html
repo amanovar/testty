@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bcs-hub</title>
+<meta name="description" content="Learn Java, PHP, Python, C programming and web development tutorials with examples. Free notes, syllabus, interview questions and study material for students.">
+<meta name="keywords" content="free pic downloader, Google image downloader, Instagram video downloader, printed video downloader, free pic image downloader, Java tutorial, PHP tutorial, Python tutorial, C programming, web development, programming notes, BCA notes, coding interview questions,">
+<meta name="author" content="Your Website Name">
+<!-- Google Indexing -->
+<meta name="robots" content="index, follow">
+<!-- Open Graph (Facebook Share) -->
+<meta property="og:title" content="Learn Programming Online - Free Tutorials">
+<meta property="og:description" content="Free Java, PHP, Python tutorials with notes, syllabus and interview questions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourwebsite.com">
+<meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+<!-- Canonical URL -->
+<link rel="canonical" href="https://yourwebsite.com/">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+/* Body mein padding de taaki content header ke peeche na chupe */
+body {
+    background: #f8fafc;
+    color: #0f172a;
+    padding-top: 110px; /* Header (60px) + Scrollbar (approx 50px) */
+}
+
+/* Header Fix */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    position: fixed; /* Sticky ki jagah Fixed use karein */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    height: 60px;
+    /* Hardware acceleration enable karein taaki vibration na ho */
+    transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#e11d48;
+}
+
+.hamburger{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    position: fixed;
+    top: 0; /* Pure screen par */
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: #0f172a;
+    z-index: 3000; /* Sabse upar */
+    transition: .3s;
+}
+
+.sidebar.show{
+left:0;
+}
+
+.sidebar-header{
+display:flex;
+justify-content:space-between;
+padding:14px;
+font-weight:700;
+background:#020617;
+}
+
+.side-item{
+padding:14px;
+border-bottom:1px solid rgba(255,255,255,.1);
+cursor:pointer;
+}
+
+.side-sub{
+display:none;
+padding-left:10px;
+}
+
+.side-sub a{
+display:block;
+padding:8px 0;
+color:#cbd5f5;
+text-decoration:none;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.4);
+display:none;
+z-index:999;
+}
+.overlay.show{
+display:block;
+}
+
+
+/* Top Scrollbar Fix */
+.top-scrollbar {
+    position: fixed; /* Isse bhi fixed karein */
+    top: 60px; /* Header ke thik niche */
+    left: 0;
+    right: 0;
+    background: #020617;
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+    z-index: 1500;
+    transform: translateZ(0);
+}
+
+.top-scrollbar a{
+display:inline-block;
+color:#e5e7eb;
+padding:8px 16px;
+text-decoration:none;
+}
+
+.top-scrollbar a:hover{
+background:#1e293b;
+border-radius:6px;
+}
+
+
+/* ================= SECTION ================= */
+.tools-promo{
+
+color: black;
+text-align:center;
+padding:80px 20px;
+}
+
+.promo-content{
+max-width:800px;
+margin:auto;
+}
+
+
+
+.tools-promo h2{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.tools-promo p{
+color:black;
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.promo-buttons{
+margin-bottom:25px;
+}
+
+.btn-primary{
+background: #2563eb;
+color: white;
+padding:10px 22px;
+border-radius:8px;
+text-decoration:none;
+margin-right:10px;
+transition:.3s;
+font-weight:600;
+}
+
+.btn-primary:hover{
+background:#1d4ed8;
+}
+
+.btn-outline{
+border:1px solid white;
+color:white;
+padding:10px 22px;
+border-radius:8px;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn-outline:hover{
+background:#1d4ed8;
+color:black;
+}
+
+.promo-features span{
+display:inline-block;
+margin:6px 12px;
+font-size:14px;
+color:#c7d2fe;
+}
+
+
+
+/* ================= FOOTER ================= */
+footer{
+background:#020617;
+color:#cbd5e1;
+padding:40px 20px;
+}
+
+.footer{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+footer h4{
+margin-bottom:10px;
+color:#fff;
+}
+
+footer a{
+display:block;
+color:#cbd5e1;
+text-decoration:none;
+margin:6px 0;
+font-size:14px;
+}
+
+.copy{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#94a3b8;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+.section{grid-template-columns:1fr}
+.menu{display:none}
+.hamburger{display:block}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="hamburger" onclick="openSidebar()">☰</div>
+<div class="logo">BCA-HUB</div>
+
+
+</header>
+
+<!-- MOBILE SIDEBAR -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<span>Menu</span>
+<span onclick="closeSidebar()">✖</span>
+</div>
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+
+
+
+
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+
+
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+<div class="side-item" onclick="toggleSide(this)">
+C Language
+<div class="side-sub">
+<a href="#">Arrays</a>
+<a href="#">Pointers</a>
+</div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- TOP BAR -->
+<div class="top-scrollbar">
+<a href="#">HTML</a>
+<a href="#">CSS</a>
+<a href="#">JavaScript</a>
+<a href="#">C</a>
+<a href="#">Java</a>
+<a href="#">DBMS</a>
+<a href="#">OS</a>
+</div>
+<section class="tools-promo" id="home">
+    <div class="promo-content">
+        <h1>Simplify Your Work with BCA-HUB</h1>
+        
+        <p>
+            Access powerful <strong>Calculators</strong>, <strong>Social Media Downloaders</strong>, 
+            <strong>Programming Tutorials</strong>, and <strong>PDF Utilities</strong> — all in one place. 
+            Designed specifically for students and developers to make daily digital tasks faster and 100% FREE.
+        </p>
+
+        <div class="promo-buttons">
+            <a href="#explore-tools" class="btn-primary">
+                <i class="fas fa-th"></i> Explore All Tools
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="container" id="explore-tools">
+    </div>
+
+<style>
+        :root {
+            --bg: #f4f7fe;
+            --card-bg: #ffffff;
+            --primary: #4361ee;
+            --text: #2b2d42;
+            --social-color: #ff4757;
+            --calc-color: #2ed573;
+            --gen-color: #3742fa;
+            --convert-color: #f7b731;
+        }
+
+        .container { padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
+
+        .section-title { 
+            margin: 40px 0 20px; 
+            font-size: 1.4rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            color: var(--text);
+        }
+
+        /* Grid System (Desktop) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card Design */
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(67, 97, 238, 0.15);
+            border-color: var(--primary);
+        }
+
+        .card i {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Color Coding */
+        .downloader-card i { color: var(--social-color); }
+        .share-card i { color: var(--gen-color); }
+        .convert-card i { color: var(--convert-color); }
+        .calc-card i { color: var(--calc-color); }
+
+        .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+        .card p { font-size: 0.85rem; color: #64748b; line-height: 1.4; }
+
+        /* Mobile Optimization (List View) */
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; gap: 12px; }
+            .card {
+                flex-direction: row;
+                text-align: left;
+                padding: 18px;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+            .card i { font-size: 1.8rem; margin-bottom: 0; min-width: 40px; text-align: center; }
+            .card h3 { font-size: 1rem; margin-bottom: 2px; }
+            .card p { font-size: 0.8rem; }
+            .card br { display: none; } /* Mobile par p ko clean rakhne ke liye */
+        }
+
+    
+    </style>
+   <div class="container">
+    
+    <h2 class="section-title"><i class="fas fa-download"></i> Social Media Downloaders</h2>
+    <div class="grid">
+        <a href="google-image-downloader.html" class="card downloader-card">
+            <i class="fab fa-google"></i>
+            <h3>Google Image Downloader</h3>
+        </a>
+        <a href="instagram-video-downloader.html" class="card downloader-card">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram Video Downloader</h3>
+        </a>
+        <a href="instagram-image-downloader.php" class="card downloader-card">
+            <i class="fas fa-image"></i>
+            <h3>Instagram Image Downloader</h3>
+        </a>
+        <a href="pinterest-video-downloader.php" class="card downloader-card">
+            <i class="fab fa-pinterest"></i>
+            <h3>Pinterest Video Downloader</h3>
+        </a>
+        <a href="flickr-downloader.php" class="card downloader-card">
+            <i class="fab fa-flickr"></i>
+            <h3>Flickr Downloader</h3>
+        </a>
+        <a href="freepik-image-download.php" class="card downloader-card">
+            <i class="fas fa-vector-square"></i>
+            <h3>Freepik Downloader</h3>
+        </a>
+        <a href="thumbnail-generator.php" class="card downloader-card">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Thumbnail Generator</h3>
+        </a>
+    </div>
+
+    <h2 class="section-title"><i class="fas fa-share-nodes"></i> Social Share Link Generator Tools</h2>
+    <div class="grid">
+        <a href="whatsapp-link-share-generator.php" class="card share-card"><i class="fab fa-whatsapp"></i><h3>WhatsApp Link Share Generator</h3></a>
+        <a href="instagram-link-generator.php" class="card share-card"><i class="fab fa-instagram"></i><h3>Instagram Link Share Generator</h3></a>
+        <a href="telegram-link-share-generator.php" class="card share-card"><i class="fab fa-telegram"></i><h3>Telegram Link Share Generator</h3></a>
+        <a href="vk-link-share-generator.php" class="card share-card"><i class="fab fa-vk"></i><h3>VK Link Share Generator</h3></a>
+        <a href="mastodon-link-share-generator.php" class="card share-card"><i class="fab fa-mastodon"></i><h3>Mastodon Link Share Generator</h3></a>
+        <a href="blogger-link-share-generator.php" class="card share-card"><i class="fab fa-blogger"></i><h3>Blogger Link Share Generator</h3></a>
+        <a href="yummly-link-share-generator.php" class="card share-card"><i class="fas fa-utensils"></i><h3>Yummly Link Share Generator</h3></a>
+        <a href="care2-link-share-generator.php" class="card share-card"><i class="fas fa-heart"></i><h3>Care2 Link Share Generator</h3></a>
+        <a href="diigo-link-share-generator.php" class="card share-card"><i class="fas fa-bookmark"></i><h3>Diigo Link Share Generator</h3></a>
+        <a href="fark-link-share-generator.php" class="card share-card"><i class="fas fa-bolt"></i><h3>Fark Link Share Generator</h3></a>
+        <a href="instapaper-link-share-generator.php" class="card share-card"><i class="fas fa-file-alt"></i><h3>Instapaper Link Share Generator</h3></a>
+        <a href="withknown-link-share-generator.php" class="card share-card"><i class="fas fa-edit"></i><h3>Withknown Link Share Generator</h3></a>
+        <a href="meneame-link-share-generator.php" class="card share-card"><i class="fas fa-share"></i><h3>Meneame Link Share Generator</h3></a>
+        <a href="netvouz-link-share-generator.php" class="card share-card"><i class="fas fa-link"></i><h3>Netvouz Link Share Generator</h3></a>
+        <a href="plurk-link-share-generator.php" class="card share-card"><i class="fas fa-comments"></i><h3>Plurk Link Share Generator</h3></a>
+        <a href="qzone-link-share-generator.php" class="card share-card"><i class="fas fa-star"></i><h3>Qzone Link Share Generator</h3></a>
+        <a href="svejo-link-share-generator.php" class="card share-card"><i class="fas fa-lightbulb"></i><h3>Svejo Link Share Generator</h3></a>
+        <a href="tuenti-link-share-generator.php" class="card share-card"><i class="fas fa-user-friends"></i><h3>Tuenti Link Share Generator</h3></a>
+    </div>
+
+    <h2 class="section-title"><i class="fas fa-sync"></i> Conversion & Security</h2>
+    <div class="grid">
+        <a href="image-to-pdf-converter.php" class="card convert-card"><i class="fas fa-file-pdf"></i><h3>Image to PDF Generator</h3></a>
+        <a href="qr-code-generator.php" class="card convert-card"><i class="fas fa-qrcode"></i><h3>QR Generator</h3></a>
+        <a href="name-style-generator.php" class="card convert-card"><i class="fas fa-font"></i><h3>Name Style Generator</h3></a>
+        <a href="ip-address-geolocation.php" class="card convert-card"><i class="fas fa-map-marker-alt"></i><h3>IP Geolocation Generator</h3></a>
+        <a href="strong-password-generator.php" class="card convert-card"><i class="fas fa-lock"></i><h3>Password Generator</h3></a>
+        <a href="pdf-to-content.html" class="card convert-card"><i class="fas fa-file-word"></i><h3>PDF to Content Generator</h3></a>
+        <a href="binary-to-decimal.php" class="card convert-card"><i class="fas fa-code"></i><h3>Binary to Decimal Generator</h3></a>
+    </div>
+
+    <h2 class="section-title"><i class="fas fa-calculator"></i> Calculators & Math</h2>
+    <div class="grid">
+        <a href="health-bmi-calculator.php" class="card calc-card"><i class="fas fa-weight"></i><h3>BMI Calculator</h3></a>
+        <a href="gst-calculator.php" class="card calc-card"><i class="fas fa-file-invoice-dollar"></i><h3>GST Calculator</h3></a>
+        <a href="percentage-calculator.html" class="card calc-card"><i class="fas fa-percent"></i><h3>Percentage Calculator</h3></a>
+        <a href="area-of-circle.php" class="card calc-card"><i class="far fa-circle"></i><h3>Area of Circle Calculator</h3></a>
+        <a href="odd-even-checker.php" class="card calc-card"><i class="fas fa-divide"></i><h3>Odd-Even Calculator</h3></a>
+        <a href="prime-checker.html" class="card calc-card"><i class="fas fa-superscript"></i><h3>Prime Numbers Calculator</h3></a>
+        <a href="add-fraction.php" class="card calc-card"><i class="fas fa-plus-square"></i><h3>Add Fractions Calculator</h3></a>
+        <a href="currency-converter.php" class="card calc-card"><i class="fas fa-coins"></i><h3>Currency Calculator</h3></a>
+        <a href="train-speed-checker.php" class="card calc-card"><i class="fas fa-train"></i><h3>Train Speed Calculator</h3></a>
+    </div>
+
+    <h2 class="section-title"><i class="fas fa-ruler-combined"></i> Unit Converters</h2>
+    <div class="grid">
+        <a href="kilometer-to-mile-converter.php" class="card convert-card"><i class="fas fa-road"></i><h3>KM to Mile Converter</h3></a>
+        <a href="kilometer-universal.php" class="card convert-card"><i class="fas fa-globe"></i><h3>KM Universal Converter</h3></a>
+        <a href="mile-to-meter-converter.php" class="card convert-card"><i class="fas fa-arrows-alt-h"></i><h3>Mile to Meter Converter</h3></a>
+        <a href="feet-to-meter.php" class="card convert-card"><i class="fas fa-ruler"></i><h3>Feet to Meter Converter</h3></a>
+        <a href="feet-to-inches.php" class="card convert-card"><i class="fas fa-ruler-vertical"></i><h3>Feet to Inches Converter</h3></a>
+        <a href="angle-converter.php" class="card convert-card"><i class="fas fa-compass"></i><h3>Angle Converter</h3></a>
+        <a href="moment-of-force.php" class="card convert-card"><i class="fas fa-wrench"></i><h3>Moment of Force Converter</h3></a>
+    </div>
+
+</div>
+
+<style>
+    .premium-footer {
+        background-color: #f8f9fa; /* Light background */
+        padding: 20px 0;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+    }
+
+    .premium-footer a {
+        text-decoration: none;
+        color: #1877f2; /* Aapka favorite blue color */
+        font-weight: 500;
+        margin: 0 10px;
+        transition: 0.3s;
+        display: inline-block; /* Phone par spacing ke liye */
+    }
+
+    .premium-footer a:hover {
+        color: #145dbf;
+        text-decoration: underline;
+    }
+
+    .premium-footer p {
+        display: inline-block;
+        margin-bottom: 0;
+        color: #6c757d;
+        font-weight: bold;
+    }
+
+    /* Mobile ke liye special setting */
+    @media (max-width: 576px) {
+        .premium-footer a {
+            margin: 5px 8px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+<section class="premium-footer container-fluid">
+    <div class="container">
+        <p>About Us | </p>
+        <a href="about.php">About Us</a>
+        <a href="terms.html">Terms and Condition</a>
+        <a href="Privacy-Policy.php">Privacy Policy</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer">
+        <div>
+            <h4>Converter Tools</h4>
+            <a href="Image-to-pdf-Converter.php">Image to PDF Converter</a>
+            <a href="QR-code-Generator.php">QR Code Generator</a>
+            <a href="name-style-generator.php">Name Text Generator</a>
+            <a href="ip-address-geolocation.php">IP Address Geolocation Tool</a>
+
+            <h4 style="margin-top: 20px;">Social Share Link Generator</h4>
+            <a href="care2-Link-Share-Generator.php">Care2 Link Share Generator</a>
+            <a href="diigo-Link-Share-Generator.php">Diigo Link Share Generator</a>
+            <a href="Fark-Link-Share-Generator.php">Fark Link Share Generator</a>
+            <a href="instapaper-Link-Share-Generator.php">Instapaper Link Share Generator</a>
+            <a href="Withknown-Link-Share-Generator.php">Withknown Link Share Generator</a>
+            <a href="Meneame-Link-Share-Generator.php">Meneame Link Share Generator</a>
+            <a href="Netvouz-Link-Share-Generator.php">Netvouz Link Share Generator</a>
+            <a href="Plurk-Link-Share-Generator.php">Plurk Link Share Generator</a>
+            <a href="Qzone-Link-Share-Generator.php">Qzone Link Share Generator</a>
+            <a href="Svejo-Link-Share-Generator.php">Svejo Link Share Generator</a>
+            <a href="Tuenti-Link-Share-Generator.php">Tuenti Link Share Generator</a>
+            <a href="Blogger-Link-Share-Generator.php">Blogger Link Share Generator</a>
+        </div>
+
+        <div>
+            <h4>Social Media Downloaders</h4>
+            <a href="google-image-downloader.html">Google Image Downloader</a>
+            <a href="instagaram-video-downloader.html">Instagram Video Generator</a>
+            <a href="Thumbnail-Generator.php">Thumbnail Generator</a>
+            <a href="Instagram-Image-downloader.php">Instagram Image Generator</a>
+            <a href="Whatsapp-Link-Share-Generator.php">WhatsApp Link Share Generator</a>
+            <a href="instagram-link-generator.php">Instagram Link Share Generator</a>
+            <a href="flickr-downloader.php">Flickr Downloader</a>
+            <a href="Telegram-Link-Share-Generator.php">Telegram Link Share Generator</a>
+            <a href="vk-Link-Share-Generator.php">VK (Vkontakte) Link Share Generator</a>
+            <a href="Mastodon-Link-Share-Generator.php">Mastodon Link Share Generator</a>
+            <a href="Yummly-Link-Share-Generator.php">Yummly Link Share Generator</a>
+        </div>
+
+        <div>
+            <h4>Calculators & Unit Converters</h4>
+            <a href="pdf-to-contant.html">PDF to Content Converter</a>
+            <a href="kilometer-to-mile-converter.php">Kilometer to Mile Converter</a>
+            <a href="kilometer-universal.php">Kilometer Universal Converter</a>
+            <a href="angle-converter.php">Angle Converter</a>
+            <a href="Currency-Converter.php">Currency Converter</a>
+            <a href="feet-to-meter.php">Feet to Meter Converter</a>
+            <a href="feet-to-inches.php">Feet to Inches Converter</a>
+            <a href="train-speed-checker.php">Train Speed Checker</a>
+            <a href="moment-of-force.php">Moment of Force Converter</a>
+            <a href="mile-to-meter-converter.php">Mile to Meter Converter</a>
+            <a href="area-of-circle.php">Area of Circle Calculator</a>
+            <a href="Odd-Even-Checker.php">Odd-Even Checker</a>
+            <a href="health-bmi-calculator.php">Health BMI Calculator</a>
+            <a href="gst-calculator.php">GST Calculator</a>
+            <a href="Prime-Checker.html">Prime Numbers Calculator</a>
+            <a href="Percentage-Calculator.html">Percentage (%) Calculator</a>
+            <a href="Binary-to-Decimal.php">Binary to Decimal Converter</a>
+            <a href="Add-Fraction.php">Add Fraction Calculator</a>
+        </div>
+    </div>
+</footer>
+
+<!--<div class="copy">
+© 2026 BCA-HUB | All Rights Reserved
+</div>-->
+</footer>
+
+<script>
+function openSidebar(){
+document.getElementById("sidebar").classList.add("show");
+document.getElementById("overlay").classList.add("show");
+}
+
+function closeSidebar(){
+document.getElementById("sidebar").classList.remove("show");
+document.getElementById("overlay").classList.remove("show");
+}
+
+function toggleSide(item){
+const sub=item.querySelector(".side-sub");
+sub.style.display=sub.style.display==="block"?"none":"block";
+}
+
+document.querySelectorAll(".menu-item").forEach(item=>{
+item.addEventListener("mouseenter",()=>item.classList.add("active"));
+item.addEventListener("mouseleave",()=>item.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>
