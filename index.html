@@ -455,13 +455,29 @@ C Language
                 justify-content: flex-start;
                 gap: 15px;
             }
-            .card i { font-size: 1.8rem; margin-bottom: 0; min-width: 40px; text-align: center; }
-            .card h3 { font-size: 1rem; margin-bottom: 2px; }
-            .card p { font-size: 0.8rem; }
+        
             .card br { display: none; } /* Mobile par p ko clean rakhne ke liye */
         }
 
+    /* Mobile Optimization section mein ye badlav karein */
+@media (max-width: 768px) {
+    /* Title ko bada karne ke liye */
+    .card h3 { 
+        font-size: 1.15rem !important; /* Pehle 1rem tha */
+        margin-bottom: 4px; 
+    }
     
+    /* Description/Paragraph ko bada karne ke liye */
+    .card p { 
+        font-size: 0.95rem !important; /* Pehle 0.8rem tha */
+        line-height: 1.5;
+    }
+
+    /* Icon ka size bhi thoda adjust kar sakte hain */
+    .card i {
+        font-size: 2rem !important; 
+    }
+}
     </style>
    <div class="container">
     
@@ -695,3 +711,4 @@ item.addEventListener("mouseleave",()=>item.classList.remove("active"));
 
 </body>
 </html>
+
